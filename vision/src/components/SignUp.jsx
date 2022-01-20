@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import IconButton from "@mui/material/IconButton";
+import Profile from "./Profile";
 
 const theme = createTheme();
 const styles = {
@@ -31,6 +32,7 @@ export default function SignUp() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <Profile />
         <Box
           sx={{
             marginTop: 8,

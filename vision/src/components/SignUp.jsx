@@ -8,12 +8,14 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import IconButton from "@mui/material/IconButton";
+import "./SignUp.css";
 
 const theme = createTheme();
 const styles = {
   largeIcon: {
-    width: 60,
-    height: 60,
+    width: 100,
+    height: 100,
+    fontSize: "large",
   },
 };
 
@@ -42,7 +44,7 @@ export default function SignUp() {
         >
           <h1>Fitness Expo 2022</h1>
           <IconButton>
-            <FitnessCenterIcon iconStyle={styles.largeIcon} />
+            <FitnessCenterIcon fontSize="large" styles={{ color: "#21130d" }} />
           </IconButton>
 
           <Box

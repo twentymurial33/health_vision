@@ -1,13 +1,28 @@
 import SignUp from "./components/SignUp";
 import { app } from "./firebase-config";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import HomePage from "./components/HomePage";
+import Home from "./components/HomePage";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useRoutes,
+} from "react-router-dom";
 import "./App.css";
+
+const AppWrapper = () => {
+  let routes = useRoutes([
+    { path: "/", element: <Home /> },
+    { path: "SignUp", element: <SignUp /> },
+  ]);
+  return routes;
+};
 
 function App() {
   return (
-    <div>
-      <SignUp />
+    <div className="App">
+      <Router>
+        <AppWrapper />
+      </Router>
     </div>
   );
 }

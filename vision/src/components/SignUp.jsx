@@ -42,7 +42,7 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <h1>Fitness Expo 2022</h1>
+          <h1>Black_Fahari @2022</h1>
           <IconButton>
             <FitnessCenterIcon fontSize="large" styles={{ color: "#21130d" }} />
           </IconButton>

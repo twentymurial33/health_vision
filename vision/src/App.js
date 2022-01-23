@@ -1,5 +1,5 @@
 import SignUp from "./components/SignUp";
-import { app } from "./firebase-config";
+import { AuthProvider } from "./AuthContext";
 import Home from "./components/HomePage";
 import {
   BrowserRouter as Router,

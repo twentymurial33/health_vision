@@ -9,6 +9,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import IconButton from "@mui/material/IconButton";
 import "./SignUp.css";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../AuthContext";
 
 const theme = createTheme();
 const styles = {
@@ -20,6 +22,13 @@ const styles = {
 };
 
 export default function SignUp() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const emailRef = useRef();
+  const fullNameRef = useRef();
+  const passwordRef = useRef();
+  const { signup } = useAuth();
+  const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,6 +36,24 @@ export default function SignUp() {
       email: data.get("email"),
       password: data.get("password"),
     });
+  };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const fullName = fullNameRef.current.value;
+    signup(email, password, fullName)
+      .then((ref) => {
+        setLoading(false);
+        history.push("/");
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
   };
 
   return (

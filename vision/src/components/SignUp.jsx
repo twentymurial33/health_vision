@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useRef, useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -10,8 +10,8 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import IconButton from "@mui/material/IconButton";
 import "./SignUp.css";
 import { useAuth } from "../AuthContext";
-import { useRef, useState } from "react";
-// import { useHistory } from "react-router-dom";
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 const styles = {
@@ -28,34 +28,55 @@ export default function SignUp() {
   const emailRef = useRef();
   const fullNameRef = useRef();
   const passwordRef = useRef();
-  const { signup } = useAuth();
-  // const history = useHistory();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const signup = useAuth();
+  const passwordConfirmRef = useRef();
+  const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
+  // };
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    setError("");
-    setLoading(true);
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
-    const fullName = fullNameRef.current.value;
-    signup(email, password, fullName)
-      .then((ref) => {
-        setLoading(false);
-        // history.push("/");
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  };
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match");
+    }
+
+    try {
+      setError("");
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value);
+      navigate.push("/");
+    } catch {
+      setError("Failed to create an account");
+    }
+
+    setLoading(false);
+  }
+
+  // const handleSignup = (e) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   setLoading(true);
+  //   const email = emailRef.current.value;
+  //   const password = passwordRef.current.value;
+  //   const fullName = fullNameRef.current.value;
+  //   signup(email, password, fullName)
+  //     .then((ref) => {
+  //       setLoading(false);
+  //       // history.push("/");
+  //     })
+  //     .catch((err) => {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     });
+  // };
 
   return (
     <ThemeProvider theme={theme}>

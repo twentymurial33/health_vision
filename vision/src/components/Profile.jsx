@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Card from "@mui/material/Card";
@@ -10,7 +9,6 @@ import Typography from "@mui/material/Typography";
 import Navbar from "../shared/Navbar";
 
 export default function Profile() {
-  const [value, setValue] = React.useState(0);
   return (
     <>
       <Navbar />

@@ -12,15 +12,16 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Profile from "../components/Profile";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [state, setState] = React.useState({
-    About: false,
+    Profile: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -42,10 +43,10 @@ export default function Navbar() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Inbox", "Music"].map((text, index) => (
+        {["Favorites", "Music"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index % 2 === 0 ? <FavoriteIcon /> : <PlayCircleFilledIcon />}
             </ListItemIcon>
             <ListItemText secondary={text} />
           </ListItem>
@@ -68,9 +69,13 @@ export default function Navbar() {
         <Toolbar>
           {auth && (
             <div>
-              {["about"].map((anchor) => (
+              {["profile"].map((anchor) => (
                 <React.Fragment key={anchor}>
-                  <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+                  <Button onClick={toggleDrawer(anchor, true)}>
+                    {anchor}
+                    <AccountCircle />
+                  </Button>
+
                   <Drawer
                     anchor={anchor}
                     open={state[anchor]}
@@ -80,16 +85,6 @@ export default function Navbar() {
                   </Drawer>
                 </React.Fragment>
               ))}
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
 
               <Menu
                 id="menu-appbar"
@@ -107,7 +102,9 @@ export default function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link to="/Profile">Profile</Link>
+                </MenuItem>
               </Menu>
             </div>
           )}

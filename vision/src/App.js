@@ -1,6 +1,7 @@
 import SignUp from "./components/SignUp";
 import { AuthProvider } from "./AuthContext";
 import Home from "./components/HomePage";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,8 +12,8 @@ import "./App.css";
 
 const AppWrapper = () => {
   let routes = useRoutes([
-    { path: "/", element: <Home /> },
-    { path: "SignUp", element: <SignUp /> },
+    { path: "/", element: <SignUp /> },
+    { path: "/Home", element: <Home /> },
   ]);
   return routes;
 };
@@ -22,6 +23,7 @@ function App() {
     <div className="App">
       <Router>
         <AppWrapper />
+        <AuthProvider />
       </Router>
     </div>
   );

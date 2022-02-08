@@ -14,7 +14,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import Profile from "../components/Profile";
+
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
@@ -41,9 +41,10 @@ export default function Navbar() {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
+      style={{ backgroundColor: "grey" }}
     >
       <List>
-        {["Favorites", "Music"].map((text, index) => (
+        {["Favorite Players", " Season Music"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
               {index % 2 === 0 ? <FavoriteIcon /> : <PlayCircleFilledIcon />}
@@ -65,7 +66,7 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ backgroundColor: "#eeeee4" }}>
+      <AppBar position="static" style={{ backgroundColor: "black" }}>
         <Toolbar>
           {auth && (
             <div>
@@ -74,6 +75,9 @@ export default function Navbar() {
                   <Button onClick={toggleDrawer(anchor, true)}>
                     {anchor}
                     <AccountCircle />
+                    <h1 style={{ marginLeft: "400px" }}>
+                      Basketball Highlights 2022{" "}
+                    </h1>
                   </Button>
 
                   <Drawer
@@ -103,7 +107,7 @@ export default function Navbar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>
-                  <Link to="/Profile">Profile</Link>
+                  <Link to="/Profile"></Link>
                 </MenuItem>
               </Menu>
             </div>

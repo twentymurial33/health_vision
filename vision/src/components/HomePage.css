@@ -9,3 +9,23 @@
 body {
   background-color: grey;
 }
+
+.basketBall {
+  background-color: grey;
+  width: 600px;
+  height: 200px;
+}
+
+.basket {
+  background-color: grey;
+  width: 600px;
+  height: 200px;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  padding: 2px;
+}

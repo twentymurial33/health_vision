@@ -4,9 +4,6 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Navbar from "../shared/Navbar";
 import "./HomePage.css";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-// import axios from "axios";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -18,20 +15,20 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function HomePage(props) {
   const [isLoadingData, setisLoadingData] = React.useState(false);
-  const [articles, setData] = React.useState([]);
+  const [data, setData] = React.useState([]);
+  const [season, setSeason] = React.useState([]);
   const [showData, setShowData] = React.useState(false);
 
   const handleClick = () => {
     setisLoadingData(true);
     setShowData(true);
-    const url =
-      "https://newsapi.org/v2/everything?q=keyword&apiKey=ea6ca052605441c3a1470c2d00e3aaad";
+    const url = "https://www.balldontlie.io/api/v1/players";
     fetch(url)
       .then((response) => response.json())
       .then((json) => {
         setisLoadingData(false);
-        setData(json["articles"]);
-        console.log(articles);
+        setData(json["data"]);
+        console.log(data);
       });
   };
 
@@ -41,11 +38,15 @@ export default function HomePage(props) {
       <Stack
         direction="row"
         spacing={4}
-        style={{ marginTop: "60px", marginLeft: "60px" }}
+        style={{
+          marginTop: "60px",
+          marginLeft: "500px",
+          display: "flex",
+        }}
       >
-        <Item>
-          Gym 1
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <Item class="basketBall">
+          <h1>Players...</h1>
+
           <button type="button" onClick={handleClick}>
             Click for Data
           </button>
@@ -53,52 +54,46 @@ export default function HomePage(props) {
             isLoadingData ? (
               <h1>LOADING DATA........</h1>
             ) : (
-              articles.map((article) => <h1>{article.author}</h1>)
+              data.map((data) => (
+                <button>
+                  {data.first_name}
+
+                  {data.team.full_name}
+                </button>
+              ))
             )
           ) : (
             <div></div>
           )}
         </Item>
-        <Item>
-          Gym 2
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <button type="button">Click for Data</button>
-        </Item>
-        <Item>
-          Gym 3
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <button type="button">Click for Data</button>
-        </Item>
-        <Item>
-          Gym 4
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <button type="button">Click for Data</button>
-        </Item>
       </Stack>
       <Stack
         direction="row"
         spacing={4}
-        style={{ marginTop: "60px", marginLeft: "60px" }}
+        style={{
+          marginTop: "60px",
+          marginLeft: "500px",
+        }}
       >
-        <Item>
-          Gym 1
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <Item class="basket">
+          <h1>Season stats</h1>
+
           <button type="button">Click for Data</button>
-        </Item>
-        <Item>
-          Gym 2
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <button type="button">Click for Data</button>
-        </Item>
-        <Item>
-          Gym 3
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <button type="button">Click for Data</button>
-        </Item>
-        <Item>
-          Gym 4
-          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <button type="button">Click for Data</button>
+          {showData ? (
+            isLoadingData ? (
+              <h1>LOADING DATA........</h1>
+            ) : (
+              season.map((data) => (
+                <button>
+                  {season.season}
+
+                  {season.games_played}
+                </button>
+              ))
+            )
+          ) : (
+            <div></div>
+          )}
         </Item>
       </Stack>
     </div>

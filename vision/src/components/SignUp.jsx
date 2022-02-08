@@ -6,11 +6,10 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import IconButton from "@mui/material/IconButton";
 import "./SignUp.css";
 import { useAuth } from "../AuthContext";
-import Loading from "./Loading";
+import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
@@ -32,15 +31,6 @@ export default function SignUp() {
   const passwordConfirmRef = useRef();
   const navigate = useNavigate();
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get("email"),
-  //     password: data.get("password"),
-  //   });
-  // };
-
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -59,25 +49,6 @@ export default function SignUp() {
 
     setLoading(false);
   }
-
-  // const handleSignup = (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   setLoading(true);
-  //   const email = emailRef.current.value;
-  //   const password = passwordRef.current.value;
-  //   const fullName = fullNameRef.current.value;
-  //   signup(email, password, fullName)
-  //     .then((ref) => {
-  //       setLoading(false);
-  //       // history.push("/");
-  //     })
-  //     .catch((err) => {
-  //       setError(err.message);
-  //       setLoading(false);
-  //     });
-  // };
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -91,9 +62,9 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <h1>Black_Fahari @2022</h1>
+          <h1>Basketball_Fantasy</h1>
           <IconButton>
-            <FitnessCenterIcon fontSize="large" styles={{ color: "#21130d" }} />
+            <SportsBasketballIcon fontSize="large" style={{ color: "red" }} />
           </IconButton>
 
           <Box

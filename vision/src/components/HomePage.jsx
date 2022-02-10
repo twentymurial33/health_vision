@@ -17,7 +17,6 @@ export default function HomePage(props) {
   const [isLoadingData, setisLoadingData] = React.useState(false);
   const [isLoadingResults, setisLoadingResults] = React.useState(false);
   const [data, setData] = React.useState([]);
-  const [results, setResult] = React.useState([]);
   const [showData, setShowData] = React.useState(false);
   const [showResult, setShowResult] = React.useState(false);
 
@@ -42,8 +41,8 @@ export default function HomePage(props) {
       .then((response) => response.json())
       .then((json) => {
         setisLoadingResults(false);
-        setResult(json["results"]);
-        console.log(results);
+        setData(json["data"]);
+        console.log(data);
       });
   };
   return (
@@ -97,7 +96,7 @@ export default function HomePage(props) {
             isLoadingResults ? (
               <h1>LOADING DATA........</h1>
             ) : (
-              results.map((results) => <button>{results.id}</button>)
+              data.map((data) => <button>{data.id}</button>)
             )
           ) : (
             <div></div>

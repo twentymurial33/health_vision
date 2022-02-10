@@ -15,9 +15,11 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function HomePage(props) {
   const [isLoadingData, setisLoadingData] = React.useState(false);
+  const [isLoadingResults, setisLoadingResults] = React.useState(false);
   const [data, setData] = React.useState([]);
-  const [season, setSeason] = React.useState([]);
+  const [results, setResult] = React.useState([]);
   const [showData, setShowData] = React.useState(false);
+  const [showResult, setShowResult] = React.useState(false);
 
   const handleClick = () => {
     setisLoadingData(true);
@@ -32,6 +34,18 @@ export default function HomePage(props) {
       });
   };
 
+  const handleSave = () => {
+    setisLoadingResults(true);
+    setShowResult(true);
+    const url = "https://www.balldontlie.io/api/v1/stats";
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        setisLoadingResults(false);
+        setResult(json["results"]);
+        console.log(results);
+      });
+  };
   return (
     <div>
       <Navbar />
@@ -44,9 +58,8 @@ export default function HomePage(props) {
           display: "flex",
         }}
       >
-        <Item class="basketBall">
+        <Item className="basketBall">
           <h1>Players...</h1>
-
           <button type="button" onClick={handleClick}>
             Click for Data
           </button>
@@ -75,21 +88,16 @@ export default function HomePage(props) {
           marginLeft: "500px",
         }}
       >
-        <Item class="basket">
+        <Item className="basket">
           <h1>Season stats</h1>
-
-          <button type="button">Click for Data</button>
-          {showData ? (
-            isLoadingData ? (
+          <button type="button" onClick={handleSave}>
+            Click for Data
+          </button>
+          {showResult ? (
+            isLoadingResults ? (
               <h1>LOADING DATA........</h1>
             ) : (
-              season.map((data) => (
-                <button>
-                  {season.season}
-
-                  {season.games_played}
-                </button>
-              ))
+              results.map((results) => <button>{results.id}</button>)
             )
           ) : (
             <div></div>

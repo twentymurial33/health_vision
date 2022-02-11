@@ -13,19 +13,11 @@ import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
-const styles = {
-  largeIcon: {
-    width: 100,
-    height: 100,
-    fontSize: "large",
-  },
-};
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const emailRef = useRef();
-  const fullNameRef = useRef();
   const passwordRef = useRef();
   const signup = useAuth();
   const passwordConfirmRef = useRef();
@@ -110,3 +102,21 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
+
+//   return (
+//     <div id="main">
+
+//       <div>Currently logged in as: {currentUser?.email} </div>
+
+//       <div id="fields">
+//         <input ref={emailRef} placeholder="Email" />
+//         <input ref={passwordRef} type="password" placeholder="Password" />
+//       </div>
+
+//       <button disabled={loading || currentUser} onClick={handleSignup}>Sign Up</button>
+//       <button disabled={loading || currentUser} onClick={handleLogin}>Log In</button>
+//       <button disabled={loading || !currentUser} onClick={handleLogout}>Log Out</button>
+
+//     </div>
+//   );
+// }

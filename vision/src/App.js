@@ -2,12 +2,7 @@ import SignUp from "./components/SignUp";
 import { AuthProvider } from "./AuthContext";
 import Home from "./components/HomePage";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useRoutes,
-} from "react-router-dom";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import "./App.css";
 
 const AppWrapper = () => {

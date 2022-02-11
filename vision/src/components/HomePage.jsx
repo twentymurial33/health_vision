@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import Navbar from "../shared/Navbar";
 import "./HomePage.css";
+import Music from "./Music";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -58,6 +59,7 @@ export default function HomePage(props) {
         }}
       >
         <Item className="basketBall">
+          <Music style={{ marginTop: "10px" }} />
           <h1>Players...</h1>
           <button type="button" onClick={handleClick}>
             Click for Data
@@ -88,6 +90,7 @@ export default function HomePage(props) {
         }}
       >
         <Item className="basket">
+          <Music style={{ marginTop: "10px" }} />
           <h1>Season stats</h1>
           <button type="button" onClick={handleSave}>
             Click for Data

@@ -5,6 +5,11 @@ import { styled } from "@mui/material/styles";
 import Navbar from "../shared/Navbar";
 import "./HomePage.css";
 import Music from "./Music";
+import Box from "@mui/material/Box";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+// import { FixedSizeList } from "react-window";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -34,6 +39,18 @@ export default function HomePage(props) {
       });
   };
 
+  function renderRow(props) {
+    const { index, style } = props;
+
+    return (
+      <ListItem style={style} key={index} component="div" disablePadding>
+        <ListItemButton>
+          <ListItemText primary={`Item ${index + 1}`} />
+        </ListItemButton>
+      </ListItem>
+    );
+  }
+
   const handleSave = () => {
     setisLoadingResults(true);
     setShowResult(true);
@@ -61,24 +78,33 @@ export default function HomePage(props) {
         <Item className="basketBall">
           <Music style={{ marginTop: "10px" }} />
           <h1>Players...</h1>
-          <button type="button" onClick={handleClick}>
-            Click for Data
-          </button>
-          {showData ? (
-            isLoadingData ? (
-              <h1>LOADING DATA........</h1>
-            ) : (
-              data.map((data) => (
-                <button>
-                  {data.first_name}
+          <Box
+            sx={{
+              width: "100%",
+              height: 400,
+              maxWidth: 360,
+              bgcolor: "background.paper",
+            }}
+          >
+            <button type="button" onClick={handleClick}>
+              Click for Data
+            </button>
+            {showData ? (
+              isLoadingData ? (
+                <h1>LOADING DATA........</h1>
+              ) : (
+                data.map((data) => (
+                  <button>
+                    {data.first_name}
 
-                  {data.team.full_name}
-                </button>
-              ))
-            )
-          ) : (
-            <div></div>
-          )}
+                    {data.team.full_name}
+                  </button>
+                ))
+              )
+            ) : (
+              <div></div>
+            )}
+          </Box>
         </Item>
       </Stack>
       <Stack

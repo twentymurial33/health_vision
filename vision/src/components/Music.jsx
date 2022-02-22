@@ -22,7 +22,7 @@ function Music() {
         return currentSongIndex + 1;
       }
     });
-  }, [currentSongIndex]);
+  });
 
   return (
     <div>

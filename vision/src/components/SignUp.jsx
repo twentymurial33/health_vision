@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -17,26 +17,21 @@ const theme = createTheme();
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const signup = useAuth();
-  const passwordConfirmRef = useRef();
+  const auth = useAuth();
+
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match");
-    }
-
+    console.log(e);
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-      navigate.push("/");
-    } catch {
-      setError("Failed to create an account");
+      await auth(e.target[0].value, e.target[2].value);
+      navigate.push("/home");
+    } catch (error) {
+      // setError("Failed to create an account");
+      console.log(error);
     }
 
     setLoading(false);
@@ -94,7 +89,7 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Log In
             </Button>
           </Box>
         </Box>
@@ -102,21 +97,3 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
-
-//   return (
-//     <div id="main">
-
-//       <div>Currently logged in as: {currentUser?.email} </div>
-
-//       <div id="fields">
-//         <input ref={emailRef} placeholder="Email" />
-//         <input ref={passwordRef} type="password" placeholder="Password" />
-//       </div>
-
-//       <button disabled={loading || currentUser} onClick={handleSignup}>Sign Up</button>
-//       <button disabled={loading || currentUser} onClick={handleLogin}>Log In</button>
-//       <button disabled={loading || !currentUser} onClick={handleLogout}>Log Out</button>
-
-//     </div>
-//   );
-// }

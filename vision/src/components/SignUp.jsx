@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -15,10 +15,11 @@ import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function SignUp() {
-  const [loading, setLoading] = useState(false);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { signup } = useAuth();
   const [error, setError] = useState("");
-  const auth = useAuth();
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -27,20 +28,17 @@ export default function SignUp() {
     try {
       setError("");
       setLoading(true);
-      await auth(e.target[0].value, e.target[2].value);
+      await signup(emailRef.current.value, passwordRef.current.value);
       navigate.push("/home");
-    } catch (error) {
-      // setError("Failed to create an account");
+    } catch {
       console.log(error);
     }
-
     setLoading(false);
   }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-
         <Box
           sx={{
             marginTop: 8,
@@ -53,7 +51,6 @@ export default function SignUp() {
           <IconButton>
             <SportsBasketballIcon fontSize="large" style={{ color: "red" }} />
           </IconButton>
-
           <Box
             component="form"
             noValidate
@@ -68,6 +65,7 @@ export default function SignUp() {
                   id="email"
                   label="Email Address"
                   name="email"
+                  ref={emailRef}
                   autoComplete="email"
                 />
               </Grid>
@@ -79,6 +77,7 @@ export default function SignUp() {
                   label="Password"
                   type="password"
                   id="password"
+                  ref={passwordRef}
                   autoComplete="new-password"
                 />
               </Grid>

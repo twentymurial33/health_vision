@@ -9,7 +9,6 @@ import Box from "@mui/material/Box";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-// import { FixedSizeList } from "react-window";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -39,17 +38,17 @@ export default function HomePage(props) {
       });
   };
 
-  function renderRow(props) {
-    const { index, style } = props;
+  // function renderRow(props) {
+  //   const { index, style } = props;
 
-    return (
-      <ListItem style={style} key={index} component="div" disablePadding>
-        <ListItemButton>
-          <ListItemText primary={`Item ${index + 1}`} />
-        </ListItemButton>
-      </ListItem>
-    );
-  }
+  //   return (
+  //     <ListItem style={style} key={index} component="div" disablePadding>
+  //       <ListItemButton>
+  //         <ListItemText primary={`Item ${index + 1}`} />
+  //       </ListItemButton>
+  //     </ListItem>
+  //   );
+  // }
 
   const handleSave = () => {
     setisLoadingResults(true);

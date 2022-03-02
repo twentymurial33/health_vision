@@ -6,9 +6,6 @@ import Navbar from "../shared/Navbar";
 import "./HomePage.css";
 import Music from "./Music";
 import Box from "@mui/material/Box";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -37,18 +34,6 @@ export default function HomePage(props) {
         console.log(data);
       });
   };
-
-  // function renderRow(props) {
-  //   const { index, style } = props;
-
-  //   return (
-  //     <ListItem style={style} key={index} component="div" disablePadding>
-  //       <ListItemButton>
-  //         <ListItemText primary={`Item ${index + 1}`} />
-  //       </ListItemButton>
-  //     </ListItem>
-  //   );
-  // }
 
   const handleSave = () => {
     setisLoadingResults(true);

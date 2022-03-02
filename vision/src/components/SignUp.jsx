@@ -19,7 +19,7 @@ export default function SignUp() {
   const passwordRef = useRef();
   const { signup } = useAuth();
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -27,14 +27,16 @@ export default function SignUp() {
     console.log(e);
     try {
       setError("");
-      setLoading(true);
+      // setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      navigate.push("/home");
+      navigate("./HomePage", { replace: true });
+      console.log(e);
     } catch {
       console.log(error);
     }
-    setLoading(false);
+    // setLoading(false);
   }
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -86,6 +88,7 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
+              onSubmit={handleSubmit}
               sx={{ mt: 3, mb: 2 }}
             >
               Log In

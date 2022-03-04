@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import Controls from "./Controls";
-// import Details from "./Details";
+import Details from "./Details";
 
 function Player(props) {
   const audioEl = useRef(null);
@@ -13,7 +13,6 @@ function Player(props) {
       audioEl.current.pause();
     }
   });
-
   const SkipSong = (forwards = true) => {
     if (forwards) {
       props.setCurrentSongIndex(() => {
@@ -46,8 +45,7 @@ function Player(props) {
         src={props.songs[props.currentSongIndex].src}
         ref={audioEl}
       ></audio>
-
-      {/* <Details song={props.songs[props.currentSongIndex]} /> */}
+      <Details song={props.songs[props.currentSongIndex]} />
       <Controls
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}

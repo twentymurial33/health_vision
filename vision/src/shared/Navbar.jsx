@@ -17,7 +17,6 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [state, setState] = React.useState({
     Profile: false,
@@ -55,10 +54,6 @@ export default function Navbar() {
     </Box>
   );
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -67,7 +62,7 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: "black" }}>
         <Toolbar>
-          {auth && (
+          {
             <div>
               {["profile"].map((anchor) => (
                 <React.Fragment key={anchor}>
@@ -110,7 +105,7 @@ export default function Navbar() {
                 </MenuItem>
               </Menu>
             </div>
-          )}
+          }
         </Toolbar>
       </AppBar>
     </Box>

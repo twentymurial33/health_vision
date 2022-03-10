@@ -15,11 +15,11 @@ import { useNavigate } from "react-router-dom";
 const theme = createTheme();
 
 export default function SignUp() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const emailRef = useRef();
   const passwordRef = useRef();
   const { signup } = useAuth();
   const [error, setError] = useState("");
-  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
@@ -27,14 +27,12 @@ export default function SignUp() {
     console.log(e);
     try {
       setError("");
-      // setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       navigate("./HomePage", { replace: true });
       console.log(e);
     } catch {
       console.log(error);
     }
-    // setLoading(false);
   }
 
   return (
@@ -88,10 +86,11 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              onSubmit={handleSubmit}
-              sx={{ mt: 3, mb: 2 }}
+              onClick={handleSubmit}
+              onClick={() => setIsLoggedIn(!isLoggedIn)}
+              sx={{ mt: 3, mb: 3 }}
             >
-              Log In
+              {isLoggedIn ? <button>Logout</button> : <button>Login</button>}
             </Button>
           </Box>
         </Box>

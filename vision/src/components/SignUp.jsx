@@ -86,11 +86,15 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={handleSubmit}
+              // onClick={handleSubmit}
               onClick={() => setIsLoggedIn(!isLoggedIn)}
               sx={{ mt: 3, mb: 3 }}
             >
-              {isLoggedIn ? <button>Logout</button> : <button>Login</button>}
+              {isLoggedIn ? (
+                <button style={{ color: "white" }}>Logout</button>
+              ) : (
+                <button>Login</button>
+              )}
             </Button>
           </Box>
         </Box>

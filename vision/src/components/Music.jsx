@@ -1,36 +1,36 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import Sound from "react-sound";
 import Player from "./Player/Player";
 
-function Music() {
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [nextSongIndex, setNextSongIndex] = useRef(0);
-  const [songs] = useState([
+const Music = () => {
+  const [songs, setSongs] = useState([
     {
-      title: "Forget me too ft. Halsey",
-      artist: "Machine Gun Kelly",
-      img_src: "./images/song-1.jpg",
-      src: "./music/on-n-on.mp3",
+      artist: "Beyonce!",
+      album: " Love On Top",
+      track: "$orries",
+      src: "./music/music.mp3/",
     },
     {
-      title: "Song 4",
-      artist: "Artist 4",
-      img_src: "./images/song-4.jpg",
-      src: "",
+      artist: "Beyonce",
+      album: "Love On Top",
+      track: "4",
+      src: "./music/Beyoncé.mp3",
     },
-
-    useEffect(() => {
-      nextSongIndex.current = nextSongIndex.current + 1;
-    }),
   ]);
-  //     setNextSongIndex(() => {
-  //       if (currentSongIndex + 1 > songs.length - 1) {
-  //         return 0;
-  //       } else {
-  //         return currentSongIndex + 1;
-  //       }
-  //     });
-  //   }, [currentSongIndex]),
-  // ]);
+
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
+
+  useEffect(() => {
+    setNextSongIndex(() => {
+      if (currentSongIndex + 1 > songs.length - 1) {
+        return 0;
+      } else {
+        return currentSongIndex + 1;
+      }
+    });
+  }, [currentSongIndex]);
+
   return (
     <div className="App">
       <Player
@@ -41,5 +41,6 @@ function Music() {
       />
     </div>
   );
-}
+};
+
 export default Music;

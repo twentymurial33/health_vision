@@ -33,12 +33,14 @@ const Music = () => {
 
   return (
     <div className="App">
-      <Player
-        currentSongIndex={currentSongIndex}
-        setCurrentSongIndex={setCurrentSongIndex}
-        nextSongIndex={nextSongIndex}
-        songs={songs}
-      />
+      <Sound>
+        <Player
+          currentSongIndex={currentSongIndex}
+          setCurrentSongIndex={setCurrentSongIndex}
+          nextSongIndex={nextSongIndex}
+          songs={songs}
+        />
+      </Sound>
     </div>
   );
 };

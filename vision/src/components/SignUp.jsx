@@ -11,6 +11,7 @@ import "./SignUp.css";
 import { useAuth } from "../AuthContext";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import { useNavigate } from "react-router-dom";
+// import HomePage from "./HomePage";
 
 const theme = createTheme();
 
@@ -91,7 +92,7 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 3 }}
             >
               {isLoggedIn ? (
-                <button style={{ color: "white" }}>Logout</button>
+                <button style={{ color: "black" }}>Logout</button>
               ) : (
                 <button>Login</button>
               )}

@@ -6,6 +6,7 @@ import Navbar from "../shared/Navbar";
 import "./HomePage.css";
 import Music from "./Music";
 import Box from "@mui/material/Box";
+import AddPlayer from "./AddPlayer";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -70,6 +71,7 @@ export default function HomePage(props) {
               bgcolor: "background.paper",
             }}
           >
+            <AddPlayer />
             <button type="button" onClick={handleClick}>
               Click for Data
             </button>

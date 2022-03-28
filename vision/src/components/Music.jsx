@@ -22,7 +22,7 @@ const Music = () => {
   const [nextSongIndex, setNextSongIndex] = useState(currentSongIndex + 1);
 
   useEffect(() => {
-    setNextSongIndex(() => {
+    setSongs(() => {
       if (currentSongIndex + 1 > songs.length - 1) {
         return 0;
       } else {

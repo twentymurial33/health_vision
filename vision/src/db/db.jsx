@@ -1,4 +1,4 @@
-import Dexie from "dexie";
+import Dexie, { Table } from "dexie";
 
 export const db = new Dexie("myDatabase");
 db.version(1).stores({

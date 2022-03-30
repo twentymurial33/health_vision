@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { db } from "../db";
+import { db } from "../db/db";
 
 export default function AddPlayer() {
   const [first_name, setName] = useState("");
@@ -7,13 +7,12 @@ export default function AddPlayer() {
 
   async function addPlayer() {
     try {
-      //Add new players
       const id = await db.players.add({
         first_name,
-        position,
       });
       setName(`Player ${first_name} successfully added ${id}`);
-      //   setName("");
+      console.log(id);
+      setName("");
     } catch (error) {
       setPosition(`Failed to add ${first_name}:${error}`);
     }
@@ -24,8 +23,15 @@ export default function AddPlayer() {
       Name:
       <input
         type="text"
+        autoFocus
+        placeholder="Name of list..."
         value={first_name}
         onChange={(ev) => setName(ev.target.value)}
+        onKeyUp={(ev) => {
+          if (ev.key === "Enter") {
+            db.add({});
+          }
+        }}
       />
       <button onClick={addPlayer}>Add Player</button>
     </>

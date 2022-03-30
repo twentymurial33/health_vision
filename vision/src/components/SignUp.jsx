@@ -11,11 +11,15 @@ import "./SignUp.css";
 import { useAuth } from "../AuthContext";
 import SportsBasketballIcon from "@material-ui/icons/SportsBasketball";
 import { useNavigate } from "react-router-dom";
-// import HomePage from "./HomePage";
+import { Amplify } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+import awsExports from "../aws-exports";
+Amplify.configure(awsExports);
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignUp({ signOut, user }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -58,7 +62,7 @@ export default function SignUp() {
             onSubmit={handleSubmit}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
+            {/* <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -82,20 +86,23 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-            </Grid>
+            </Grid> */}
+
+            <h1>Hello {user.username}</h1>
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              // onClick={handleSubmit}
-              onClick={() => setIsLoggedIn(!isLoggedIn)}
-              sx={{ mt: 3, mb: 3 }}
+              onClick={signOut}
+              // onClick={() => setIsLoggedIn(!isLoggedIn)}
+              // sx={{ mt: 3, mb: 3 }}
             >
-              {isLoggedIn ? (
+              {/* {isLoggedIn ? (
                 <button style={{ color: "black" }}>Logout</button>
               ) : (
                 <button>Login</button>
-              )}
+              )} */}
             </Button>
           </Box>
         </Box>
